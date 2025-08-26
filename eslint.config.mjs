@@ -109,6 +109,8 @@ const eslintConfig = [
                         ['\\u0000$'],
                         ['^react'],
                         ['^\\w'],
+                        ['^@mui/icons-material'],
+                        ['^@mui/material'],
                         ['^@/types'],
                         ['^@/hooks'],
                         ['^@/utils'],

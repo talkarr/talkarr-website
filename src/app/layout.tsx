@@ -4,13 +4,14 @@ import type { FC, PropsWithChildren } from 'react';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
+import { ThemeProvider } from '@mui/material';
+import CssBaseline from '@mui/material/CssBaseline';
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
+
 import NavbarLayout from '@/layouts/NavbarLayout';
 import theme from '@/theme';
 
 import '@/global.css';
-import { ThemeProvider } from '@mui/material';
-import CssBaseline from '@mui/material/CssBaseline';
-import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 const geistSans = Geist({
     variable: '--font-geist-sans',
@@ -33,12 +34,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
     };
 };
 
-const RootLayout: FC<PropsWithChildren> = async ({ children }) => {
+const RootLayout: FC<PropsWithChildren> = ({ children }) => {
     return (
         <html lang="en" /*lang={i18n.language}*/>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <AppRouterCacheProvider>
-                    <ThemeProvider theme={theme}>
+                    <ThemeProvider theme={theme} defaultMode="system">
                         <CssBaseline />
                         <NavbarLayout>{children}</NavbarLayout>
                     </ThemeProvider>

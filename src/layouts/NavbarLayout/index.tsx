@@ -1,43 +1,41 @@
-import type { Route } from 'next';
+'use client';
 
 import type { FC, PropsWithChildren } from 'react';
+import React from 'react';
 
 import Link from 'next/link';
 
-import Logo from '@/components/Logo';
-import NavigationLink from '@/layouts/NavbarLayout/components/NavigationLink';
-
+import { alpha, useTheme } from '@mui/material';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-export interface NavbarConfig {
-    height: number;
-    routesToShow: {
-        path: Route;
-        label: string;
-    }[];
-}
+import Logo from '@/components/Logo';
+import { githubLicenseLink } from '@/constants';
+import NavigationLink from '@/layouts/NavbarLayout/components/NavigationLink';
+import ThemeSwitcher from '@/layouts/NavbarLayout/components/ThemeSwitcher';
+import navbar from '@/navigation';
 
-const navbar: NavbarConfig = {
-    height: 64,
-    routesToShow: [
-        {
-            path: '/',
-            label: 'Home',
-        },
-    ],
-};
+const copyrightStartYear = 2025;
+const currentYear = new Date().getFullYear();
+const yearDisplay =
+    currentYear === copyrightStartYear
+        ? ` ${currentYear} `
+        : ` ${copyrightStartYear} - ${currentYear} `;
 
 const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
+    const theme = useTheme();
+
     return (
-        <Box>
+        <Box bgcolor="background.default" sx={{ minHeight: '100vh' }}>
             <Box
-                bgcolor="primary.main"
+                bgcolor={alpha(theme.palette.primary.main, 0.85)}
+                boxShadow={2}
                 height={navbar.height}
                 display="flex"
                 alignContent="center"
                 justifyContent="space-between"
                 px={2}
+                component="nav"
             >
                 <Box
                     flex={1}
@@ -73,7 +71,11 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                 >
                     {/* Center section */}
                     {navbar.routesToShow.map(route => (
-                        <NavigationLink href={route.path} key={route.path}>
+                        <NavigationLink
+                            href={route.path}
+                            icon={route.icon}
+                            key={route.path}
+                        >
                             {route.label}
                         </NavigationLink>
                     ))}
@@ -85,9 +87,33 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     alignItems="center"
                 >
                     {/* Right section */}
+                    <ThemeSwitcher />
                 </Box>
             </Box>
-            <Box>{children}</Box>
+            <Box component="main" pt={2}>
+                {children}
+            </Box>
+            <Box
+                component="footer"
+                position="absolute"
+                bottom={0}
+                width="100%"
+                py={2}
+                textAlign="center"
+                bgcolor={alpha(theme.palette.background.paper, 0.85)}
+            >
+                <a
+                    href={githubLicenseLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <Typography variant="body2" color="textSecondary">
+                        &copy;
+                        {yearDisplay}
+                        Talkarr. All rights reserved.
+                    </Typography>
+                </a>
+            </Box>
         </Box>
     );
 };

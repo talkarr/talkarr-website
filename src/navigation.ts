@@ -1,0 +1,41 @@
+import type { Route } from 'next';
+
+import GithubIcon from '@mui/icons-material/GitHub';
+import HomeIcon from '@mui/icons-material/HomeRounded';
+import SupportIcon from '@mui/icons-material/QuestionAnswerRounded';
+
+import type SvgIcon from '@mui/material/SvgIcon';
+
+import { githubRepoLink } from '@/constants';
+
+export interface NavbarConfig {
+    height: number;
+    routesToShow: {
+        path: Route | `https://${string}`;
+        label: string;
+        icon?: typeof SvgIcon;
+    }[];
+}
+
+const navbar: NavbarConfig = {
+    height: 64,
+    routesToShow: [
+        {
+            path: '/',
+            label: 'Home',
+            icon: HomeIcon,
+        },
+        {
+            path: '/#support',
+            label: 'Support',
+            icon: SupportIcon,
+        },
+        {
+            path: githubRepoLink,
+            label: 'GitHub',
+            icon: GithubIcon,
+        },
+    ],
+};
+
+export default navbar;
