@@ -10,7 +10,9 @@
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "typegen": "next typegen",
-    "prebuild": "yarn typegen"
+    "typegen:with-check": "if [ ! -f next-env.d.ts ]; then yarn typegen; fi",
+    "prebuild": "yarn typegen:with-check",
+    "pretypecheck": "yarn typegen:with-check"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
