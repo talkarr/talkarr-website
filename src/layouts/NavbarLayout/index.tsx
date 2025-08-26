@@ -51,7 +51,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                             gap={1}
                             alignItems="center"
                         >
-                            <Logo />
+                            <Logo shadow />
                             <Typography
                                 variant="h6"
                                 component="span"
