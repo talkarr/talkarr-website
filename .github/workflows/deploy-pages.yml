@@ -59,19 +59,52 @@ jobs:
       - name: Run typecheck
         run: yarn typecheck
 
-  deploy:
+  build-app:
     name: Deploy to GitHub Pages
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: lint-and-typecheck
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Vite Github Pages Deployer
-        uses: skywarth/vite-github-pages-deployer@v1.5.0
-        id: deploy_to_pages
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          package_manager: 'yarn'
+          node-version-file: '.nvmrc'
+          cache: 'yarn'
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            .next/cache
+          # Generate a new cache whenever packages or source files change.
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          # If source files changed but packages didn't, rebuild from a prior cache.
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --non-interactive --prefer-offline
+
+      - name: Build with Next.js
+        run: yarn build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  deploy-app:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build-app
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

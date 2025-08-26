@@ -1,11 +1,17 @@
+'use client';
+import type { Route } from 'next';
+
 import type { FC, PropsWithChildren } from 'react';
-import { NavLink } from 'react-router';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 import { alpha, styled } from '@mui/material';
 import Typography from '@mui/material/Typography';
 
 export interface NavigationLinkProps extends PropsWithChildren {
-    to: string;
+    href: Route;
+    as?: string;
 }
 
 const StyledLinkText = styled(Typography, {
@@ -17,19 +23,16 @@ const StyledLinkText = styled(Typography, {
     '&:hover': {
         color: theme.palette.primary.contrastText,
     },
-    textDecoration: 'none',
     padding: theme.spacing(2, 3),
 }));
 
-const NavigationLink: FC<NavigationLinkProps> = ({ to, children }) => (
-    <NavLink
-        to={to}
-        style={{
-            textDecoration: 'none',
-            padding: 0,
-        }}
-    >
-        {({ isActive }) => (
+const NavigationLink: FC<NavigationLinkProps> = ({ href, as, children }) => {
+    const pathname = usePathname();
+
+    const isActive = pathname === href;
+
+    return (
+        <Link href={href} as={as}>
             <StyledLinkText
                 highlighted={isActive}
                 variant="body1"
@@ -37,8 +40,8 @@ const NavigationLink: FC<NavigationLinkProps> = ({ to, children }) => (
             >
                 {children}
             </StyledLinkText>
-        )}
-    </NavLink>
-);
+        </Link>
+    );
+};
 
 export default NavigationLink;

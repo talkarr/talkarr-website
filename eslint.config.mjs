@@ -1,63 +1,49 @@
-/* eslint-disable import/no-unresolved */
-import { globalIgnores } from 'eslint/config';
-import { configs as airbnbConfigs } from 'eslint-config-airbnb-extended/legacy';
-import _import from 'eslint-plugin-import';
+/* eslint-disable no-underscore-dangle */
+import { configs as airbnbConfigs } from 'eslint-config-airbnb-extended';
+import eslintImport from 'eslint-plugin-import';
 import muiPathImports from 'eslint-plugin-mui-path-imports';
 import noRelativeImportPaths from 'eslint-plugin-no-relative-import-paths';
 import prettier from 'eslint-plugin-prettier';
-import react from 'eslint-plugin-react';
-import reactHooks from 'eslint-plugin-react-hooks';
-import reactRefresh from 'eslint-plugin-react-refresh';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
-import eslintPluginUnicorn from 'eslint-plugin-unicorn';
-import globals from 'globals';
-import tseslint from 'typescript-eslint';
+import { fileURLToPath } from 'node:url';
+import { dirname } from 'path';
 
-import { fixupConfigRules, fixupPluginRules } from '@eslint/compat';
 import { FlatCompat } from '@eslint/eslintrc';
-import js from '@eslint/js';
+import stylistic from '@stylistic/eslint-plugin';
 
-const flatCompat = new FlatCompat();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-export default tseslint.config([
-    globalIgnores(['dist', 'node_modules']),
+const flatCompat = new FlatCompat({
+    baseDirectory: __dirname,
+});
+
+const eslintConfig = [
+    ...flatCompat.extends('next/core-web-vitals', 'next/typescript'),
     {
-        name: 'TypeScript and React',
-        files: ['**/*.{ts,tsx}'],
+        name: 'Stylistic',
         plugins: {
-            react,
-            import: fixupPluginRules(_import),
-        },
-        extends: [
-            js.configs.recommended,
-            tseslint.configs.recommended,
-            reactHooks.configs['recommended-latest'],
-            reactRefresh.configs.vite,
-            eslintPluginUnicorn.configs.recommended,
-            airbnbConfigs.react.typescript,
-        ],
-        languageOptions: {
-            ecmaVersion: 2022,
-            globals: globals.browser,
+            '@stylistic': stylistic,
         },
     },
-    ...fixupConfigRules(
-        flatCompat.extends(
-            'plugin:import/recommended',
-            'plugin:import/typescript',
-        ),
-    ),
+    ...airbnbConfigs.react.recommended,
     {
         name: 'Custom rules and prettier',
         plugins: {
-            react,
             'no-relative-import-paths': noRelativeImportPaths,
             'simple-import-sort': simpleImportSort,
             'mui-path-imports': muiPathImports,
             prettier,
+            import: eslintImport,
         },
-        extends: [tseslint.configs.recommended],
         rules: {
+            'react/react-in-jsx-scope': 'off',
+            'react/function-component-definition': 'off',
+            'react/jsx-indent': 'off',
+            'react/jsx-indent-props': 'off',
+            'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
+            'react/require-default-props': 'off',
+
             'linebreak-style': ['error', 'unix'],
             'no-nested-ternary': 'off',
             'no-confusing-arrow': 'off',
@@ -241,4 +227,6 @@ export default tseslint.config([
             'unicorn/prefer-top-level-await': 'off',
         },
     },
-]);
+];
+
+export default eslintConfig;
