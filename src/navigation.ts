@@ -2,6 +2,7 @@ import type { Route } from 'next';
 
 import GithubIcon from '@mui/icons-material/GitHub';
 import HomeIcon from '@mui/icons-material/HomeRounded';
+import FeaturesIcon from '@mui/icons-material/NewReleasesRounded';
 import SupportIcon from '@mui/icons-material/QuestionAnswerRounded';
 
 import type SvgIcon from '@mui/material/SvgIcon';
@@ -30,6 +31,11 @@ const navbar: NavbarConfig = {
             path: '/',
             label: 'Home',
             icon: HomeIcon,
+        },
+        {
+            path: '/#features',
+            label: 'Features',
+            icon: FeaturesIcon,
         },
         {
             path: '/#support',

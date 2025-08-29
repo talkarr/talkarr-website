@@ -43,6 +43,7 @@ const eslintConfig = [
             'react/jsx-indent-props': 'off',
             'react/jsx-filename-extension': ['error', { extensions: ['.tsx'] }],
             'react/require-default-props': 'off',
+            'react/no-unknown-property': 'off',
 
             'linebreak-style': ['error', 'unix'],
             'no-nested-ternary': 'off',

@@ -18,16 +18,28 @@ export interface SectionProps
     @deprecated Use `sectionTitle` instead.
     */
     title?: never;
+    flexbox?: boolean;
+    gap?: number;
 }
 
-const Section: FC<SectionProps> = ({ id, children, sectionTitle }) => (
+const Section: FC<SectionProps> = ({
+    id,
+    children,
+    sectionTitle,
+    flexbox,
+    gap,
+}) => (
     <InternalSection id={id}>
         <Box>
-            <Box>
-                <Typography variant="h4" component="h2" gutterBottom>
-                    {sectionTitle}
-                </Typography>
-            </Box>
+            <Typography variant="h4" component="h2" gutterBottom>
+                {sectionTitle}
+            </Typography>
+        </Box>
+        <Box
+            display={flexbox ? 'flex' : undefined}
+            flexWrap={flexbox ? 'wrap' : undefined}
+            gap={gap}
+        >
             {children}
         </Box>
     </InternalSection>
