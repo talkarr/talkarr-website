@@ -14,9 +14,6 @@ import SupportElement from '@/content/HomePage/components/SupportElement';
 
 const HomePage: NextPage = () => (
     <Container>
-        <Typography variant="h6" mb={2} align="center">
-            This page is still work-in-progress. More content coming soon!
-        </Typography>
         <Section id="support" sectionTitle="Support">
             <Typography variant="body1" mb={2}>
                 Because Talkarr is an open-source project, we rely on our

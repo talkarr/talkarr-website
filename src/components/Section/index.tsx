@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 
 const InternalSection = styled('section')(({ theme }) => ({
     marginBottom: theme.spacing(4),
+    paddingTop: theme.spacing(2),
 }));
 
 export interface SectionProps

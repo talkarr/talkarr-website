@@ -28,14 +28,18 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
     return (
         <Box bgcolor="background.default" sx={{ minHeight: '100vh' }}>
             <Box
-                bgcolor={alpha(theme.palette.primary.main, 0.85)}
-                boxShadow={2}
-                height={navbar.height}
+                component="nav"
                 display="flex"
                 alignContent="center"
                 justifyContent="space-between"
+                position="sticky"
+                top={0}
+                width="100%"
+                zIndex={theme.zIndex.appBar}
                 px={2}
-                component="nav"
+                boxShadow={2}
+                bgcolor={alpha(theme.palette.primary.main, navbar.opacity)}
+                height={navbar.navHeight}
             >
                 <Box
                     flex={1}
@@ -90,17 +94,25 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     <ThemeSwitcher />
                 </Box>
             </Box>
-            <Box component="main" pt={2}>
+            <Box
+                component="main"
+                height={`calc(100vh - ${navbar.navHeight + navbar.footerHeight + navbar.padding * 2}px)`}
+                mb={`${navbar.footerHeight + navbar.padding}px`}
+                sx={{ overflowY: 'auto', scrollBehavior: 'smooth' }}
+            >
                 {children}
             </Box>
             <Box
                 component="footer"
-                position="absolute"
-                bottom={0}
+                position="fixed"
                 width="100%"
                 py={2}
+                bottom={0}
                 textAlign="center"
-                bgcolor={alpha(theme.palette.background.paper, 0.85)}
+                height={navbar.footerHeight}
+                bgcolor={alpha(theme.palette.background.paper, navbar.opacity)}
+                boxShadow={4}
+                zIndex={theme.zIndex.appBar - 1}
             >
                 <a
                     href={githubLicenseLink}

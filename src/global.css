@@ -1,3 +1,4 @@
+/* Disable text decoration for all anchor tags */
 a {
     text-decoration: none;
 }

@@ -9,7 +9,10 @@ import type SvgIcon from '@mui/material/SvgIcon';
 import { githubRepoLink } from '@/constants';
 
 export interface NavbarConfig {
-    height: number;
+    navHeight: number;
+    footerHeight: number;
+    padding: number;
+    opacity: number;
     routesToShow: {
         path: Route | `https://${string}`;
         label: string;
@@ -18,7 +21,10 @@ export interface NavbarConfig {
 }
 
 const navbar: NavbarConfig = {
-    height: 64,
+    navHeight: 64,
+    footerHeight: 48,
+    padding: 16,
+    opacity: 0.95,
     routesToShow: [
         {
             path: '/',
