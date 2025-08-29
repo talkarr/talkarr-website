@@ -181,10 +181,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     bottom={0}
                     textAlign="center"
                     height={navbar.footerHeight}
-                    bgcolor={alpha(
-                        theme.palette.background.paper,
-                        navbar.opacity,
-                    )}
+                    bgcolor={alpha(theme.palette.primary.dark, navbar.opacity)}
                     boxShadow={4}
                     zIndex={theme.zIndex.appBar - 1}
                 >
@@ -193,7 +190,10 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Typography variant="body2" color="textSecondary">
+                        <Typography
+                            variant="body2"
+                            color="primary.contrastText"
+                        >
                             &copy;
                             {yearDisplay}
                             Talkarr. All rights reserved.

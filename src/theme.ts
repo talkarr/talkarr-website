@@ -6,6 +6,9 @@ const theme = createTheme({
     typography: {
         fontFamily: 'Geist, Arial, sans-serif',
     },
+    cssVariables: {
+        colorSchemeSelector: 'class',
+    },
     colorSchemes: {
         light: {
             palette: {

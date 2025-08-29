@@ -4,7 +4,7 @@ import type { FC, PropsWithChildren } from 'react';
 
 import { Geist, Geist_Mono } from 'next/font/google';
 
-import { ThemeProvider } from '@mui/material';
+import { InitColorSchemeScript, ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
@@ -36,11 +36,12 @@ export const generateMetadata = async (): Promise<Metadata> => {
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => {
     return (
-        <html lang="en" /*lang={i18n.language}*/>
+        <html lang="en" suppressHydrationWarning /*lang={i18n.language}*/>
             <body className={`${geistSans.variable} ${geistMono.variable}`}>
                 <AppRouterCacheProvider>
                     <ThemeProvider theme={theme} defaultMode="system">
                         <CssBaseline />
+                        <InitColorSchemeScript attribute="class" />
                         <NavbarLayout>{children}</NavbarLayout>
                     </ThemeProvider>
                 </AppRouterCacheProvider>
