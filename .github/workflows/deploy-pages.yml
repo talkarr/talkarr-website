@@ -58,7 +58,7 @@ jobs:
         run: yarn typecheck
 
   build-app:
-    name: Deploy to GitHub Pages
+    name: Build app for production
     runs-on: ubuntu-latest
     needs: lint-and-typecheck
     steps:
