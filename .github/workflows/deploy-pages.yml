@@ -89,7 +89,7 @@ jobs:
         run: yarn install --frozen-lockfile --non-interactive --prefer-offline
 
       - name: Build with Next.js
-        run: yarn build
+        run: NEXT_TELEMETRY_DISABLED=1 yarn build
 
       - name: Upload artifact
         if: github.ref_name == 'main'
