@@ -1,8 +1,10 @@
-name: Deploy vite webpage
+name: Lint, Check and Deploy
 
 on:
   # Runs on pushes targeting the default branch
   push:
+    branches: ["main"]
+  pull_request:
     branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -12,10 +14,6 @@ permissions:
   contents: read
   pages: write
   id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
 
 jobs:
   lint-and-typecheck:
@@ -94,12 +92,16 @@ jobs:
         run: yarn build
 
       - name: Upload artifact
+        if: github.ref_name == 'main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
 
   deploy-app:
     name: Deploy to GitHub Pages
+    concurrency:
+      group: "pages"
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
