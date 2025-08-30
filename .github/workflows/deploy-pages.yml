@@ -99,6 +99,7 @@ jobs:
 
   deploy-app:
     name: Deploy to GitHub Pages
+    if: github.ref_name == 'main'
     concurrency:
       group: "pages"
       cancel-in-progress: false
