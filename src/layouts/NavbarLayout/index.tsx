@@ -95,7 +95,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     component="nav"
                     display="flex"
                     alignContent="center"
-                    justifyContent="space-between"
+                    justifyContent="space-evenly"
                     position="sticky"
                     top={0}
                     width="100%"
@@ -108,7 +108,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     <Box
                         flex={1}
                         display="flex"
-                        justifyContent="flex-start"
+                        justifyContent={{ xs: 'flex-start', md: 'center' }}
                         alignItems="center"
                     >
                         {/* Left section */}
@@ -165,7 +165,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     <Box
                         flex={1}
                         display="flex"
-                        justifyContent="flex-end"
+                        justifyContent={{ xs: 'flex-end', md: 'center' }}
                         alignItems="center"
                     >
                         {/* Right section */}
@@ -176,7 +176,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     component="main"
                     height={`calc(100vh - ${navbar.navHeight + navbar.padding}px)`}
                     mb={`${navbar.footerHeight + navbar.padding}px`}
-                    pb={`${navbar.padding}px`}
+                    pb={`${navbar.padding + navbar.pageBottomPadding}px`}
                     sx={{ overflowY: 'auto', scrollBehavior: 'smooth' }}
                 >
                     {children}
@@ -192,6 +192,9 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                     bgcolor={alpha(theme.palette.primary.dark, navbar.opacity)}
                     boxShadow={4}
                     zIndex={theme.zIndex.appBar - 1}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
                 >
                     <a
                         href={githubLicenseLink}

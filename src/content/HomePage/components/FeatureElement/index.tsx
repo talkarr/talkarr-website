@@ -26,7 +26,7 @@ export interface FeatureElementProps {
 
 const StyledImage = styled(Image)(({ theme }) => ({
     width: '100%',
-    maxWidth: theme.breakpoints.values.sm,
+    // maxWidth: theme.breakpoints.values.sm,
     [theme.breakpoints.up('sm')]: {
         maxWidth: 450,
     },
@@ -48,10 +48,10 @@ const FeatureElement: FC<FeatureElementProps> = ({
         flexWrap="wrap"
         width="100%"
         sx={{
-            flexDirection: 'row',
+            flexDirection: { xs: 'column', sm: 'row' },
             // every 2nd reverse
             '&:nth-of-type(even)': {
-                flexDirection: { xs: 'column', md: 'row-reverse' },
+                flexDirection: { xs: 'column', sm: 'row-reverse' },
             },
             justifyContent: 'left',
         }}

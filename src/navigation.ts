@@ -13,6 +13,7 @@ export interface NavbarConfig {
     navHeight: number;
     footerHeight: number;
     padding: number;
+    pageBottomPadding: number;
     opacity: number;
     routesToShow: {
         path: Route | `https://${string}`;
@@ -22,9 +23,10 @@ export interface NavbarConfig {
 }
 
 const navbar: NavbarConfig = {
-    navHeight: 64,
-    footerHeight: 48,
+    navHeight: 72,
+    footerHeight: 64,
     padding: 16,
+    pageBottomPadding: 180,
     opacity: 0.95,
     routesToShow: [
         {
