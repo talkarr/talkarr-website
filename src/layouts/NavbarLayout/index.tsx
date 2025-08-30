@@ -1,7 +1,7 @@
 'use client';
 
 import type { FC, PropsWithChildren } from 'react';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
@@ -32,6 +32,12 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
     const theme = useTheme();
 
     const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
+    const [showJavascriptButtons, setShowJavascriptButtons] =
+        useState<boolean>(false);
+
+    useEffect(() => {
+        setShowJavascriptButtons(true);
+    }, []);
 
     const closeDrawer = (): void => {
         setDrawerOpen(false);
@@ -106,16 +112,18 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                         alignItems="center"
                     >
                         {/* Left section */}
-                        <IconButton
-                            sx={theme => ({
-                                display: { md: 'none' },
-                                color: theme.palette.primary.contrastText,
-                            })}
-                            onClick={openDrawer}
-                            aria-label="Open navigation menu"
-                        >
-                            <MenuIcon />
-                        </IconButton>
+                        {showJavascriptButtons ? (
+                            <IconButton
+                                sx={theme => ({
+                                    display: { md: 'none' },
+                                    color: theme.palette.primary.contrastText,
+                                })}
+                                onClick={openDrawer}
+                                aria-label="Open navigation menu"
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                        ) : null}
                         <Box display={{ xs: 'none', md: 'block' }}>
                             <Link href="/">
                                 <Box
@@ -161,7 +169,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                         alignItems="center"
                     >
                         {/* Right section */}
-                        <ThemeSwitcher />
+                        {showJavascriptButtons ? <ThemeSwitcher /> : null}
                     </Box>
                 </Box>
                 <Box
