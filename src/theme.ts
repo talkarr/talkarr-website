@@ -1,6 +1,7 @@
 'use client';
 
 import { createTheme } from '@mui/material';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const theme = createTheme({
     typography: {

@@ -65,27 +65,6 @@ const HomeImageCarousel: FC = () => {
 
     return (
         <Box mt={2} maxWidth="85%" marginX="auto">
-            <style jsx global>
-                {`
-                    .slick-prev:before,
-                    .slick-next:before {
-                        color: ${theme.palette.primary.main} !important;
-                        font-size: 30px;
-                    }
-
-                    .slick-prev {
-                        left: -38px;
-                    }
-
-                    .slick-next {
-                        right: -28px;
-                    }
-
-                    .slick-dots li button:before {
-                        color: ${theme.palette.primary.main} !important;
-                    }
-                `}
-            </style>
             <Slider {...settings}>
                 {imagesWithText.map(({ image, caption }, index) => (
                     // eslint-disable-next-line react/no-array-index-key

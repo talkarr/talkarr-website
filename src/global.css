@@ -2,3 +2,27 @@
 a {
     text-decoration: none;
 }
+
+/* Slick Carousel Customization */
+.slick-prev:before,
+.slick-next:before {
+    font-size: 30px;
+}
+
+.slick-prev {
+    left: -38px;
+}
+
+.slick-next {
+    right: -28px;
+}
+
+.slick-prev:before,
+.slick-next:before {
+    color: var(--mui-palette-primary-main) !important;
+}
+
+.slick-dots li button:before {
+    color: var(--mui-palette-primary-main) !important;
+}
+

@@ -34,20 +34,18 @@ export const generateMetadata = async (): Promise<Metadata> => {
     };
 };
 
-const RootLayout: FC<PropsWithChildren> = ({ children }) => {
-    return (
-        <html lang="en" suppressHydrationWarning /*lang={i18n.language}*/>
-            <body className={`${geistSans.variable} ${geistMono.variable}`}>
-                <AppRouterCacheProvider>
-                    <ThemeProvider theme={theme} defaultMode="system">
-                        <CssBaseline />
-                        <InitColorSchemeScript attribute="class" />
-                        <NavbarLayout>{children}</NavbarLayout>
-                    </ThemeProvider>
-                </AppRouterCacheProvider>
-            </body>
-        </html>
-    );
-};
+const RootLayout: FC<PropsWithChildren> = ({ children }) => (
+    <html lang="en" suppressHydrationWarning /*lang={i18n.language}*/>
+        <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            <AppRouterCacheProvider>
+                <ThemeProvider theme={theme} defaultMode="system">
+                    <CssBaseline />
+                    <InitColorSchemeScript attribute="class" />
+                    <NavbarLayout>{children}</NavbarLayout>
+                </ThemeProvider>
+            </AppRouterCacheProvider>
+        </body>
+    </html>
+);
 
 export default RootLayout;
