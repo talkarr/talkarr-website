@@ -3,6 +3,7 @@ import type { NextPage } from 'next';
 import WikiIcon from '@mui/icons-material/Book';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GithubIcon from '@mui/icons-material/GitHub';
+import FaqIcon from '@mui/icons-material/Help';
 import ImportIcon from '@mui/icons-material/ImportContacts';
 import LanguageIcon from '@mui/icons-material/Language';
 import LoginIcon from '@mui/icons-material/ManageAccounts';
@@ -22,7 +23,12 @@ import LoginImage from '@/assets/screenshot/login.png';
 import SettingsImage from '@/assets/screenshot/settings.png';
 import HomeImageCarousel from '@/components/HomeImageCarousel';
 import Section from '@/components/Section';
-import { githubIssuesLink, weblateLink, wikiLink } from '@/constants';
+import {
+    githubIssuesLink,
+    weblateLink,
+    wikiFaqLink,
+    wikiLink,
+} from '@/constants';
 import FeatureElement from '@/content/HomePage/components/FeatureElement';
 import SupportElement from '@/content/HomePage/components/SupportElement';
 
@@ -84,6 +90,12 @@ const HomePage: NextPage = () => (
                     description="You can open issues on GitHub to report bugs or request features."
                     icon={GithubIcon}
                     href={githubIssuesLink}
+                />
+                <SupportElement
+                    name="FAQ"
+                    description="Check out our FAQ for answers to the most common questions."
+                    icon={FaqIcon}
+                    href={wikiFaqLink}
                 />
                 <SupportElement
                     name="More coming soon!"
