@@ -21,7 +21,7 @@ import NavigationLink from '@/layouts/NavbarLayout/components/NavigationLink';
 import ThemeSwitcher from '@/layouts/NavbarLayout/components/ThemeSwitcher';
 import navbar from '@/navigation';
 
-const copyrightStartYear = 2025;
+const copyrightStartYear = 2024;
 const currentYear = new Date().getFullYear();
 const yearDisplay =
     currentYear === copyrightStartYear
