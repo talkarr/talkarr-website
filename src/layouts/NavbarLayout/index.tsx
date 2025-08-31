@@ -207,7 +207,7 @@ const NavbarLayout: FC<PropsWithChildren> = ({ children }) => {
                         >
                             &copy;
                             {yearDisplay}
-                            Talkarr. All rights reserved.
+                            CommanderRedYT and others. All rights reserved.
                         </Typography>
                     </a>
                 </Box>
