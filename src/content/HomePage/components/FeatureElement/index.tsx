@@ -31,7 +31,7 @@ const StyledImage = styled(Image)(({ theme }) => ({
         maxWidth: 450,
     },
     height: 'auto',
-    borderRadius: 16,
+    borderRadius: theme.shape.borderRadius * 8,
 }));
 
 const FeatureElement: FC<FeatureElementProps> = ({
@@ -44,9 +44,10 @@ const FeatureElement: FC<FeatureElementProps> = ({
     <Box
         bgcolor="background.paper"
         display="flex"
-        borderRadius={8}
+        borderRadius={12}
         flexWrap="wrap"
         width="100%"
+        padding={1.5}
         sx={{
             flexDirection: { xs: 'column', sm: 'row' },
             // every 2nd reverse

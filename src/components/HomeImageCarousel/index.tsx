@@ -74,6 +74,12 @@ const HomeImageCarousel: FC = () => {
                             flexDirection="column"
                             alignItems="center"
                             gap={1}
+                            bgcolor="background.paper"
+                            padding={{ xs: 1, md: 2 }}
+                            marginX={1}
+                            sx={{
+                                borderRadius: theme.shape.borderRadius * 3,
+                            }}
                         >
                             <Image
                                 src={image}
