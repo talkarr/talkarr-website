@@ -11,6 +11,7 @@ updates:
       interval: "weekly"
     ignore:
       - dependency-name: "eslint"
+      - dependency-name: "eslint*"
       - dependency-name: "react"
       - dependency-name: "react-dom"
       - dependency-name: "@typescript-eslint/*"
